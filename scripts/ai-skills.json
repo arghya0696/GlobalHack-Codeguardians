@@ -1,0 +1,72 @@
+{
+  "model_version": "claude-sonnet-4-6",
+  "test_reports_glob": "target/surefire-reports/*.txt",
+  "test_command": ["mvn", "test"],
+  "cleanup_directories": ["target/surefire-reports"],
+  "max_retries": 10,
+  "compilation_error_identifier": "Java Compilation Error",
+  "fallback_exception_regex": "([a-zA-Z0-9_.]+(?:Exception|Error|Failure))",
+
+  "file_extraction_prompt": [
+    "Analyze the following error log to identify the main project source files that need to be modified.",
+    "",
+    "CRITICAL EXTRACTION CONSTRAINTS:",
+    "1. Identify ONLY the deepest file in the stack trace that belongs to our application (the root cause). Do not return every file in the trace.",
+    "2. DO NOT return Test classes unless the error is strictly a compilation syntax error within the test itself.",
+    "",
+    "{dynamic_knowledge_base}",
+    "",
+    "Stack Trace / Error Log:",
+    "{stack_trace}"
+  ],
+
+  "fix_generation_system_prompt": [
+    "You are a Senior Software Engineer resolving CI/CD pipeline failures.",
+    "You must strictly adhere to the following Team Coding Standards.",
+    "",
+    "CRITICAL CONSTRAINTS:",
+    "1. NEVER delete, skip, or comment out test cases to resolve a failure.",
+    "2. NEVER alter the class name, class definition, or package declaration of the provided file.",
+    "3. NEVER delete unrelated existing methods. Only fix the specific method causing the error.",
+    "4. DO NOT completely rewrite the file. Keep the structure intact.",
+    "",
+    "### TEAM CODING STANDARDS ###",
+    "{coding_standards}",
+    "",
+    "{dynamic_knowledge_base}"
+  ],
+
+  "fix_generation_user_prompt": [
+    "The following code throws a {exc_type}.",
+    "",
+    "Error Log / Stack Trace:",
+    "{stack_trace}",
+    "",
+    "Code (File: {file_path}):",
+    "{code}",
+    "",
+    "Fix the {exc_type} in the code addressing the root cause indicated by the stack trace or compiler error."
+  ],
+
+  "target_exceptions": [
+    "java.lang.NullPointerException",
+    "java.lang.ClassCastException",
+    "java.lang.IndexOutOfBoundsException",
+    "java.lang.IllegalArgumentException"
+  ],
+
+  "spring_di_rules": [
+    "UnsatisfiedDependencyException: Look for missing @Service, @Component, or @Repository annotations on the required bean.",
+    "NoSuchBeanDefinitionException: The required bean is not defined or component scanning is missing it.",
+    "NoUniqueBeanDefinitionException: Multiple beans of the same type exist. Fix by using @Qualifier or @Primary.",
+    "BeanCreationException: Often caused by missing configuration properties or failing constructor logic. Check for @Value annotations or missing environment variables."
+  ],
+
+  "file_extraction_rules": [
+    "Target APPLICATION code (src/main/java) first.",
+    "CRITICAL: DO NOT return test files (files ending with 'Test.java' or 'Tests.java') unless the error is strictly a compilation syntax error within the test itself.",
+    "If a test fails due to a runtime exception (e.g., NullPointerException), look deeper into the stack trace to find the actual service, controller, or component that threw the error.",
+    "Spring Dependency Injection Errors: The user code will NOT be in the execution stack. Read the exception message carefully to identify missing annotations or bean conflicts.",
+    "Ignore standard Java libraries (java.base) and framework internal classes."
+  ]
+}

@@ -4,7 +4,7 @@ Welcome to **codguardians**! This project implements a fully autonomous, languag
 
 ### 🌟 Live Repository Examples
 You can see this pipeline actively running in the following reference repositories:
-* **Python (Pytest):** [arghya0696/sample-project](https://github.com/arghya0696/sample-project)
+* **Python (Pytest):** [codguardians-sample-project-python](https://github.com/arghya0696/codguardians-sample-project-python)
 * **Java (Spring Boot / Maven):** [arghya0696/codguardians-sample-project-java](https://github.com/arghya0696/codguardians-sample-project-java)
 
 ---

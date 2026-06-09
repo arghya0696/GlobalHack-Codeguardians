@@ -14,8 +14,8 @@ You can see this pipeline actively running in the following reference repositori
 
 * **CI/CD Test Healing:** Automatically catches failing tests or compilation errors, extracts logs, and rewrites broken application logic.
 * **SonarQube Healing:** Integrates with SonarCloud to automatically resolve code smells and security vulnerabilities.
-* **100% Language Agnostic:** The execution scripts contain zero language-specific logic. You can switch from Java to Python simply by swapping out the JSON configuration file.
-* **Automated GitOps:** Automatically creates feature branches (e.g., `health-fix-...`), stages files, commits changes as `github-actions[bot]`, and opens a detailed PR using the GitHub CLI.
+* **100% Language Agnostic:** The execution scripts contain zero language-specific logic. You can switch from Java to Python to Terraform simply by swapping out the JSON configuration file.
+* **Automated GitOps:** Automatically creates feature branches (e.g., `AI-fix-...`), stages files, commits changes as `github-actions[bot]`, and opens a detailed PR using the GitHub CLI.
 
 ---
 

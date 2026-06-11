@@ -1,9 +1,9 @@
 {
   "model_version": "claude-sonnet-4-6",
-  "test_reports_glob": "reports/test-results.xml",
-  "test_command": ["pytest", "--junitxml=reports/test-results.xml", "-v"],
-  "cleanup_directories": ["reports"],
+  "test_reports_glob": "",
+  "test_command": [""],
+  "cleanup_directories": [""],
   "max_retries": 10,
-  "compilation_error_identifier": "Python Syntax/Import Error",
+  "compilation_error_identifier": "",
   "fallback_exception_regex": "([A-Z][a-zA-Z]*(?:Error|Exception))"
 }

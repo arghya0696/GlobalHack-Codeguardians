@@ -5,27 +5,5 @@
   "cleanup_directories": ["reports"],
   "max_retries": 10,
   "compilation_error_identifier": "Python Syntax/Import Error",
-  "fallback_exception_regex": "([A-Z][a-zA-Z]*(?:Error|Exception))",
-  "target_exceptions": [
-    "AttributeError",
-    "TypeError",
-    "ValueError",
-    "KeyError",
-    "IndexError"
-  ],
-  "python_common_errors": [
-    "AttributeError: Often caused by accessing a method or attribute on None or a wrong type. Check that the object is initialised before use.",
-    "TypeError: Argument type mismatch — verify function signatures and ensure callers pass the correct types.",
-    "ValueError: Invalid value passed to a function. Check input validation and data transformations.",
-    "KeyError: Dictionary key does not exist. Use dict.get() or check membership before access.",
-    "IndexError: List or sequence index out of range. Validate lengths before indexing.",
-    "AssertionError: This means a logical calculation or state transition failed. Look at the expected vs actual values. If the math is wrong (e.g., 38.0 == 45.0), trace the properties involved back to their source models/dataclasses to fix the arithmetic."
-  ],
-  "file_extraction_rules": [
-    "Target APPLICATION code (modules in the project root or src/) first.",
-    "CRITICAL: DO NOT return test files (files matching test_*.py or *_test.py) unless the error is strictly a syntax error within the test itself.",
-    "If a test fails due to a runtime exception, trace the traceback to find the actual service or module that raised the error.",
-    "Ignore standard library modules (e.g., pathlib, os, datetime) and installed third-party packages.",
-    "The file to fix is usually the deepest user-owned frame in the traceback before the exception line."
-  ]
+  "fallback_exception_regex": "([A-Z][a-zA-Z]*(?:Error|Exception))"
 }
